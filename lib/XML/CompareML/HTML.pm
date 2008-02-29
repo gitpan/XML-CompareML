@@ -2,6 +2,7 @@ package XML::CompareML::HTML;
 
 use strict;
 use warnings;
+use CGI ();
 
 use base 'XML::CompareML::Base';
 
@@ -9,9 +10,31 @@ sub print_header
 {
     my $self = shift;
 
-    my $stylesheet_url = undef;
+    my $style = $self->get_head_css_style();
 
-    my ($style, $style_link);
+    my $o = $self->{o};
+    print {*{$o}} <<"EOF";
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Version Control Systems Comparison</title>
+$style
+</head>
+<body>
+EOF
+}
+
+sub get_head_css_style
+{
+    my $self = shift;
+    
+    my $stylesheet_url = undef;
+    my $style;
+    
     if ($stylesheet_url)
     {
         $style = "<link rel=\"stylesheet\" href=\"$stylesheet_url\" />";
@@ -53,27 +76,13 @@ ul.toc
     border-color : black;
     padding : 0.3em;
 }
-:link:hover { background-color : yellow }
+a:hover { background-color : yellow }
 tt { color : #8A2BE2 /* The BlueViolet Color */ }
 -->
 </style>
 EOF
-
-    my $o = $self->{o};
-    print {*{$o}} <<"EOF";
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html
-     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-<title>Version Control Systems Comparison</title>
-$style
-</head>
-<body>
-EOF
     }
+    return $style;
 }
 
 sub start_rendering
@@ -173,5 +182,31 @@ sub render_section_end
         $self->toc_out("\n</ul>\n");
     }
     $self->toc_out("</li>\n");
+}
+
+sub gen_systems_list
+{
+    my ($self, %args) = @_;
+
+    my $fh = $args{output_handle};
+
+    my @implementations = $self->findnodes("/comparison/meta/implementations/impl");
+
+    foreach my $impl (@implementations)
+    {
+        my $name = $self->_impl_get_tag_text($impl, "name");
+        my $url = $self->_impl_get_tag_text($impl, "url");
+        my $fullname = $self->_impl_get_tag_text($impl, "fullname");
+        my $vendor = $self->_impl_get_tag_text($impl, "vendor");
+        if (!defined($url))
+        {
+            die "URL not specified for implementation " . $self->_impl_get_name($_);
+        }
+        print {$fh} qq{<li><a href="} . CGI::escapeHTML($url) . qq{">} . 
+            CGI::escapeHTML(defined($fullname) ? $fullname : $name) . 
+            qq{</a>} . (defined($vendor) ? " by $vendor" : "") .
+            qq{</li>\n}
+            ;
+    }
 }
 1;
