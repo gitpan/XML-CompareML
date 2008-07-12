@@ -13,6 +13,7 @@ my $converter =
     XML::CompareML::HTML->new(
         'input_filename' => "t/files/scm-sys-list-1.xml",
         'output_handle' => $file,
+        'data_dir' => "./extradata",
     );
 
 my $buffer = "";
