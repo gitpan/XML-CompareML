@@ -10,6 +10,9 @@ my $builder = XML::Grammar::Builder->new(
     module_name         => 'XML::CompareML',
     license             => 'mit',
     dist_author         => 'Shlomi Fish <shlomif@iglu.org.il>',
+    configure_requires => {
+        'Module::Build' => '0.36',
+    },
     requires => {
         'Class::Accessor' => 0,
         'XML::LibXSLT' => 0,
@@ -24,7 +27,6 @@ my $builder = XML::Grammar::Builder->new(
         'IO::Scalar' => 0,
         'Test::Differences' => 0,
     },
-    create_makefile_pl => 'passthrough',
     meta_merge => {
         resources => {
             homepage => "http://web-cpan.berlios.de/modules/XML-CompareML/",
