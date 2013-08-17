@@ -4,7 +4,7 @@
       "Shlomi Fish <shlomif@iglu.org.il>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4005, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Module::Build version 0.4007, CPAN::Meta::Converter version 2.132140",
    "keywords" : [
       "Better SCM",
       "categories",
@@ -59,23 +59,19 @@
    "provides" : {
       "XML::CompareML" : {
          "file" : "lib/XML/CompareML.pm",
-         "version" : "v0.2.7"
+         "version" : "v0.2.8"
       },
       "XML::CompareML::Base" : {
-         "file" : "lib/XML/CompareML/Base.pm",
-         "version" : 0
+         "file" : "lib/XML/CompareML/Base.pm"
       },
       "XML::CompareML::DTD::Generate" : {
-         "file" : "lib/XML/CompareML/DTD/Generate.pm",
-         "version" : 0
+         "file" : "lib/XML/CompareML/DTD/Generate.pm"
       },
       "XML::CompareML::DocBook" : {
-         "file" : "lib/XML/CompareML/DocBook.pm",
-         "version" : 0
+         "file" : "lib/XML/CompareML/DocBook.pm"
       },
       "XML::CompareML::HTML" : {
-         "file" : "lib/XML/CompareML/HTML.pm",
-         "version" : 0
+         "file" : "lib/XML/CompareML/HTML.pm"
       }
    },
    "release_status" : "stable",
@@ -84,8 +80,10 @@
       "license" : [
          "http://www.opensource.org/licenses/mit-license.php"
       ],
-      "x_Demo" : "http://better-scm.berlios.de/comparison/",
-      "x_Repository" : "https://svn.berlios.de/svnroot/repos/web-cpan/xml-compareml/"
+      "repository" : {
+         "url" : "https://bitbucket.org/shlomif/xml-compareml"
+      },
+      "x_Demo" : "http://better-scm.berlios.de/comparison/"
    },
-   "version" : "v0.2.7"
+   "version" : "v0.2.8"
 }
