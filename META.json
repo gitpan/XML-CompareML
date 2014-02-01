@@ -4,7 +4,7 @@
       "Shlomi Fish <shlomif@iglu.org.il>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4007, CPAN::Meta::Converter version 2.132140",
+   "generated_by" : "Module::Build version 0.4007, CPAN::Meta::Converter version 2.132830",
    "keywords" : [
       "Better SCM",
       "categories",
@@ -51,6 +51,7 @@
             "XML::LibXML" : "0",
             "XML::LibXML::Common" : "0",
             "XML::LibXSLT" : "0",
+            "perl" : "5.008",
             "strict" : "0",
             "warnings" : "0"
          }
@@ -59,7 +60,7 @@
    "provides" : {
       "XML::CompareML" : {
          "file" : "lib/XML/CompareML.pm",
-         "version" : "v0.2.8"
+         "version" : "v0.2.9"
       },
       "XML::CompareML::Base" : {
          "file" : "lib/XML/CompareML/Base.pm"
@@ -85,5 +86,5 @@
       },
       "x_Demo" : "http://better-scm.berlios.de/comparison/"
    },
-   "version" : "v0.2.8"
+   "version" : "v0.2.9"
 }

@@ -3,9 +3,11 @@ package XML::CompareML;
 use strict;
 use warnings;
 
+use 5.008;
+
 use vars qw($VERSION);
 
-$VERSION = '0.2.8';
+$VERSION = '0.2.9';
 
 1; # End of XML::CompareML
 
@@ -17,7 +19,7 @@ XML::CompareML - A processor for the CompareML markup language
 
 =head1 VERSION
 
-Version 0.2.8
+Version 0.2.9
 
 =head1 SYNOPSIS
 
